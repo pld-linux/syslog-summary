@@ -22,6 +22,7 @@ expressions.
 
 %prep
 %setup -q
+%{__sed} -i -re '1s,^#!.*python[^ ]+,#!%{__python},' %{name}
 
 %install
 rm -rf $RPM_BUILD_ROOT
