@@ -25,9 +25,10 @@ expressions.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir}/%{name},%{_bindir}}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir}/%{name},%{_bindir},%{_mandir}/man1}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+cp -p %{name}.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -37,3 +38,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/ignore.rules
 %attr(755,root,root) %{_bindir}/syslog-summary
+%{_mandir}/man1/syslog-summary.1*
